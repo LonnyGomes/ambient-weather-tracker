@@ -1,0 +1,5 @@
+{
+  "temperatureHost": "temperature_host",
+  "temperaturePort": "temperature_port",
+  "locationName": "City, STATE"
+}
