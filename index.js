@@ -12,7 +12,7 @@ var getAmbientTemperature = function () {
       console.log(str);
       return homeBase.send(config.deviceName, data.temperature, data.humidity);
     }, function (err) {
-      console.log('err:', err);
+      console.log('Error retrieving temperature:', err);
     });
 };
 var start = function () {
@@ -21,11 +21,3 @@ var start = function () {
 };
 
 start();
-
-//getAmbientTemperature()
-//  .then(function (d) {
-//    console.log('we got this');
-//    setTimeout(temperatureCallback, config.requestDelay);
-//  }, function (err) {
-//    console.log('err:', err);
-//  });

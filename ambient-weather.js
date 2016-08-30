@@ -10,13 +10,16 @@ function getAmbientTemperature(location) {
 
   query.exec(function (err, data) {
     //console.log(data);
-    var channel = data.query.results.channel,
-      temperature = channel.item.condition.temp,
-      humidity = channel.atmosphere.humidity;
+    var channel,
+      temperature,
+      humidity;
 
     if (err) {
       defer.reject(err);
     } else {
+      channel = data.query.results.channel;
+      temperature = channel.item.condition.temp;
+      humidity = channel.atmosphere.humidity;
       defer.resolve({
         temperature: channel.item.condition.temp,
         humidity: channel.atmosphere.humidity
