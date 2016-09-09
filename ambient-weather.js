@@ -17,15 +17,19 @@ function getAmbientTemperature(location) {
     if (err) {
       defer.reject(err);
     } else {
-      channel = data.query.results.channel;
-      temperature = channel.item.condition.temp;
-      humidity = channel.atmosphere.humidity;
-      defer.resolve({
-        temperature: channel.item.condition.temp,
-        humidity: channel.atmosphere.humidity
-      });
-      //console.log(temperature);
-      //console.log(humidity);
+      if (data.query && data.query.results) {
+        channel = data.query.results.channel;
+        temperature = channel.item.condition.temp;
+        humidity = channel.atmosphere.humidity;
+        defer.resolve({
+          temperature: channel.item.condition.temp,
+          humidity: channel.atmosphere.humidity
+        });
+        //console.log(temperature);
+        //console.log(humidity);
+      } else {
+        defer.reject('Result returned null value');
+      }
     }
   });
 
