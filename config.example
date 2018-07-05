@@ -1,5 +1,9 @@
 {
-  "temperatureHost": "temperature_host",
-  "temperaturePort": "temperature_port",
-  "locationName": "City, STATE"
+  "locationName": "City, STATE",
+  "deviceName": "device_name",
+  "pollingInterval": 600000,
+  "privateKey": "certs/thermometer-x.private.key",
+  "clientCert": "certs/thermometer-x.cert.pem",
+  "caCert": "certs/root-CA.crt",
+  "host": "*.iot.us-east-1.amazonaws.com"
 }
