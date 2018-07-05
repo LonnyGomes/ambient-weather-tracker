@@ -1,23 +1,27 @@
 /*jslint node: true */
 'use strict';
 
-var config = require('./config.json');
-var weather = require('./ambient-weather');
-var homeBase = require('./home-base')(config.temperatureHost, config.temperaturePort);
+const config = require('./config.json');
+const weather = require('./ambient-weather');
+const IotAdaptor = require('./lib/IotAdaptor');
+const iot = new IotAdaptor(config);
+
 var getAmbientTemperature = function () {
   return weather.getAmbientTemperature(config.locationName)
     .then(function (data) {
       var str = new Date().toString() + ' temperature: ' + data.temperature + ', humidity: ' + data.humidity;
 
       console.log(str);
-      return homeBase.send(config.deviceName, data.temperature, data.humidity);
+      return iot.publish(data.temperature, data.humidity);
     }, function (err) {
       console.log('Error retrieving temperature:', err);
     });
 };
 var start = function () {
   getAmbientTemperature();
-  setTimeout(start, config.requestDelay);
+  setTimeout(start, config.pollingInterval);
 };
 
-start();
+iot.connect()
+  .then(() => start())
+  .catch((err) => console.error(err));
