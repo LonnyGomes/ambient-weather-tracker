@@ -5,7 +5,7 @@
   "main": "index.js",
   "dependencies": {
     "aws-iot-device-sdk": "^2.2.1",
-    "q": "^1.4.1",
+    "q": "^1.5.1",
     "yql": "^1.0.2"
   },
   "devDependencies": {},
